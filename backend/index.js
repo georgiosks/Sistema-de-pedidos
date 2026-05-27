@@ -2,7 +2,7 @@ const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const jwt = require('jsonwebtoken'); // NOVO: Importamos o fabricante de tokens
 const cors = require('cors'); // Para permitir requisições do React
-
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 const prisma = new PrismaClient();
@@ -253,4 +253,6 @@ app.get('/relatorios/financeiro', verificarToken, async (req, res) => {
 });
 
 // Inicia o servidor
-app.listen(3000, () => console.log('API Protegida rodando na porta 3000'));
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
