@@ -253,6 +253,22 @@ app.get('/relatorios/financeiro', verificarToken, async (req, res) => {
 });
 
 // Inicia o servidor
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Servidor a rodar na porta ${PORT}`);
-});
+// O resto do seu código acima continua EXATAMENTE igual...
+
+// Inicia o servidor e verifica a conexão com o Prisma
+const iniciarServidor = async () => {
+    try {
+        // Tenta conectar ao banco de dados antes de abrir o servidor
+        await prisma.$connect();
+        console.log("Conectado ao banco de dados com sucesso!");
+
+        app.listen(PORT, '0.0.0.0', () => {
+            console.log(`Servidor a rodar na porta ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Erro fatal ao conectar no banco de dados:", error);
+        process.exit(1); // Encerra o processo se o banco falhar, forçando o Railway a mostrar o erro no log
+    }
+};
+
+iniciarServidor();
