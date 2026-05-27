@@ -1,4 +1,8 @@
-const API_URL = 'http://localhost:3000';
+// Detecta automaticamente se está na nuvem (Vite ou CRA) ou usa o localhost como plano B
+const API_URL =
+  import.meta.env?.VITE_API_URL ||
+  process.env?.REACT_APP_API_URL ||
+  'https://sistema-de-pedidos-9hgz.onrender.com'; // Seu link do Render como padrão universal
 
 export const api = {
   get: async (endpoint, token = null) => {
