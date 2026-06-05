@@ -68,7 +68,10 @@ app.patch('/produtos/:id', verificarToken, async (req, res) => {
             return res.status(404).json({ erro: "Produto não encontrado." });
         }
 
-        if (preco !== undefined && preco < 0) {
+        // NOVO: Converte o preço para Número antes de testar ou guardar
+        const precoFormatado = preco !== undefined ? parseFloat(preco) : produtoExiste.preco;
+
+        if (precoFormatado < 0) {
             return res.status(400).json({ erro: "O preço não pode ser negativo." });
         }
 
@@ -77,13 +80,14 @@ app.patch('/produtos/:id', verificarToken, async (req, res) => {
             data: {
                 nome: nome !== undefined ? nome : produtoExiste.nome,
                 descricao: descricao !== undefined ? descricao : produtoExiste.descricao,
-                preco: preco !== undefined ? preco : produtoExiste.preco,
+                preco: precoFormatado,
                 categoria: categoria !== undefined ? categoria : produtoExiste.categoria,
-                disponivel: disponivel !== undefined ? disponivel : produtoExiste.disponivel
+                // NOVO: Garante que o valor guardado seja sempre um verdadeiro Booleano
+                disponivel: disponivel !== undefined ? (disponivel === true || disponivel === "true") : produtoExiste.disponivel
             }
         });
 
-        res.json({ mensagem: "Produto updated com sucesso!", produto: produtoAtualizado });
+        res.json({ mensagem: "Produto atualizado com sucesso!", produto: produtoAtualizado });
     } catch (error) {
         res.status(500).json({ erro: "Erro interno no servidor ao atualizar produto." });
     }
@@ -117,11 +121,22 @@ app.delete('/produtos/:id', verificarToken, async (req, res) => {
 app.post('/produtos', verificarToken, async (req, res) => {
     const { nome, descricao, preco, categoria, disponivel } = req.body;
 
-    const novoProduto = await prisma.produto.create({
-        data: { nome, descricao, preco, categoria, disponivel }
-    });
+    try {
+        const novoProduto = await prisma.produto.create({
+            data: {
+                nome,
+                descricao,
+                // NOVO: Forçamos a conversão para número e booleano aqui
+                preco: parseFloat(preco),
+                categoria,
+                disponivel: disponivel === true || disponivel === "true"
+            }
+        });
 
-    res.status(201).json(novoProduto);
+        res.status(201).json(novoProduto);
+    } catch (error) {
+        res.status(500).json({ erro: "Erro interno ao adicionar o produto." });
+    }
 });
 
 // POST /clientes
@@ -228,7 +243,8 @@ app.get('/relatorios/financeiro', verificarToken, async (req, res) => {
 
         res.json({
             mensagem: "Relatório gerado com sucesso",
-            statísticas: {
+            // NOVO: Nome da chave corrigido para o React conseguir ler
+            estatisticas: {
                 total_pedidos: totalPedidos,
                 faturacao_total: totalFaturado,
                 ticket_medio: totalPedidos > 0 ? (totalFaturado / totalPedidos).toFixed(2) : 0
