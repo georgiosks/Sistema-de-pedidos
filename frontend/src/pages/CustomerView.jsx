@@ -6,6 +6,7 @@ export default function CustomerView() {
   const [produtos, setProdutos] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [categoriaAtiva, setCategoriaAtiva] = useState('Todos');
   
   // Form estado
   const [nome, setNome] = useState('');
@@ -115,18 +116,33 @@ export default function CustomerView() {
           <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Escolha os melhores pratos feitos com carinho.</p>
         </div>
 
-        <div className="grid grid-cols-3">
-          {produtos.map(produto => (
-            <div key={produto.id} className="card">
-              <h3 style={{ fontSize: '1.25rem' }}>{produto.nome}</h3>
-              <p className="badge badge-primary" style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}>
-                {produto.categoria}
-              </p>
-              <p style={{ color: 'var(--text-muted)', marginTop: '1rem', flexGrow: 1 }}>
-                {produto.descricao}
-              </p>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem' }}>
-                <span className="price-tag">R$ {produto.preco.toFixed(2)}</span>
+        {produtos.length > 0 && (
+          <div className="category-menu">
+            {['Todos', ...new Set(produtos.map(p => p.categoria))].map(cat => (
+              <button 
+                key={cat} 
+                className={`pill ${categoriaAtiva === cat ? 'active' : ''}`}
+                onClick={() => setCategoriaAtiva(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="list-layout">
+          {(categoriaAtiva === 'Todos' ? produtos : produtos.filter(p => p.categoria === categoriaAtiva)).map(produto => (
+            <div key={produto.id} className="card product-item">
+              <div style={{ flex: 1 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-main)', margin: 0 }}>{produto.nome}</h3>
+                  <span className="price-tag" style={{ color: 'var(--primary)', fontSize: '1.1rem', whiteSpace: 'nowrap', marginLeft: '1rem' }}>R$ {produto.preco.toFixed(2)}</span>
+                </div>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '0.5rem', lineHeight: '1.4' }}>
+                  {produto.descricao}
+                </p>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <button className="btn btn-primary" onClick={() => adicionarAoCarrinho(produto)}>
                   Adicionar
                 </button>
