@@ -133,8 +133,16 @@ app.post('/clientes', async (req, res) => {
 
 // POST /pedidos
 app.post('/pedidos', async (req, res) => {
-    const horaAtual = new Date().getHours();
-    if (horaAtual < 13 || horaAtual > 23) {
+
+    const horaAtual = parseInt(
+        new Date().toLocaleTimeString('pt-BR', {
+            timeZone: 'America/Sao_Paulo',
+            hour: '2-digit',
+            hour12: false
+        })
+    );
+
+    if (horaAtual < 18 || horaAtual >= 23) {
         return res.status(400).json({ erro: "Estamos fechados! Horário de funcionamento: 18h às 23h." });
     }
 
