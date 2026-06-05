@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --secondary: #ec4899;
-  --bg-color: #f8fafc;
+  --primary: #fa5252;
+  --primary-dark: #e03131;
+  --secondary: #ff9f1c;
+  --bg-color: #ffffff;
   --surface: #ffffff;
-  --surface-hover: #f1f5f9;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
+  --surface-hover: #f3f4f6;
+  --text-main: #343a40;
+  --text-muted: #6b7280;
+  --border-color: #f3f4f6;
   --danger: #ef4444;
   --success: #10b981;
   --warning: #f59e0b;
-  --radius: 16px;
-  --shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.5);
+  --radius: 12px;
+  --shadow: 0 4px 20px -2px rgb(0 0 0 / 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(243, 244, 246, 0.8);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,14 +105,15 @@ p { margin: 0; }
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--primary);
   color: white;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 12px rgba(250, 82, 82, 0.25);
 }
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+  background: var(--primary-dark);
+  box-shadow: 0 6px 16px rgba(250, 82, 82, 0.4);
 }
 
 .btn-outline {
@@ -161,7 +162,7 @@ p { margin: 0; }
 .input:focus, .textarea:focus, .select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 4px rgba(250, 82, 82, 0.15);
 }
 
 .form-group {
@@ -201,9 +202,7 @@ p { margin: 0; }
 .logo {
   font-size: 1.75rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
