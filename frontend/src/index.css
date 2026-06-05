@@ -4,12 +4,12 @@
   --primary: #2d2d2d;
   --primary-dark: #1a1a1a;
   --brand: #c2a87e;
-  --secondary: #666666;
+  --secondary: #e11d48;
   --bg-color: #fdfbf7;
   --surface: #ffffff;
   --surface-hover: #f9f9f9;
   --text-main: #222222;
-  --text-muted: #666666;
+  --text-muted: #e11d48;
   --border-color: #cccccc;
   --danger: #ef4444;
   --success: #10b981;
@@ -26,7 +26,7 @@
     --surface: #1e293b;
     --surface-hover: #334155;
     --text-main: #f8fafc;
-    --text-muted: #94a3b8;
+    --text-muted: #fb7185;
     --border-color: #334155;
     --glass-bg: rgba(30, 41, 59, 0.8);
     --glass-border: rgba(255, 255, 255, 0.05);
@@ -217,13 +217,13 @@ p { margin: 0; }
   white-space: nowrap;
   transition: all 0.2s ease;
   background: transparent;
-  border: 1px solid #cccccc;
-  color: #333333;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
 }
 
 .pill.active {
-  background: #8c8c8c;
-  border-color: #8c8c8c;
+  background: var(--brand);
+  border-color: var(--brand);
   color: #ffffff;
 }
 
