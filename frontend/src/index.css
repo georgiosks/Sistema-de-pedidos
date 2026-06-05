@@ -267,7 +267,7 @@ p { margin: 0; }
 .price-tag {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #ffffff;
 }
 
 /* Animations */

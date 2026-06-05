@@ -150,7 +150,7 @@ export default function AdminView() {
       {/* Sidebar */}
       <aside style={{ width: '280px', background: 'var(--surface)', borderRight: '1px solid var(--border-color)', padding: '2rem 1rem', display: 'flex', flexDirection: 'column' }}>
         <div style={{ marginBottom: '2rem', padding: '0 1rem' }}>
-          <h2 style={{ color: 'var(--primary)', margin: 0 }}>Gourmet Admin</h2>
+          <h2 style={{ color: '#ffffff', margin: 0 }}>Gourmet Admin</h2>
         </div>
         
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flexGrow: 1 }}>
@@ -179,7 +179,7 @@ export default function AdminView() {
             <div className="grid grid-cols-3">
               <div className="card">
                 <h3 style={{ color: 'var(--text-muted)', fontSize: '1rem' }}>Faturamento Total</h3>
-                <p style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--primary)', marginTop: '0.5rem' }}>
+                <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ffffff', marginTop: '0.5rem' }}>
                   R$ {relatorio.faturacao_total.toFixed(2)}
                 </p>
               </div>
@@ -266,12 +266,12 @@ export default function AdminView() {
                     <td style={{ padding: '1rem' }}>{p.id}</td>
                     <td style={{ padding: '1rem', fontWeight: 600 }}>{p.nome}</td>
                     <td style={{ padding: '1rem' }}>{p.categoria}</td>
-                    <td style={{ padding: '1rem', color: 'var(--primary)', fontWeight: 'bold' }}>R$ {p.preco.toFixed(2)}</td>
+                    <td style={{ padding: '1rem', color: '#ffffff', fontWeight: 'bold' }}>R$ {p.preco.toFixed(2)}</td>
                     <td style={{ padding: '1rem' }}>
                       {p.disponivel ? <span className="badge badge-success">Ativo</span> : <span className="badge badge-danger">Inativo</span>}
                     </td>
                     <td style={{ padding: '1rem', textAlign: 'right' }}>
-                      <button className="btn-icon" style={{ marginRight: '0.5rem', color: 'var(--primary)' }} onClick={() => { setProdutoEdit(p); setIsEditModalOpen(true); }}>
+                      <button className="btn-icon" style={{ marginRight: '0.5rem', color: '#ffffff' }} onClick={() => { setProdutoEdit(p); setIsEditModalOpen(true); }}>
                         <Edit size={16} />
                       </button>
                       <button className="btn-icon" style={{ color: 'var(--danger)' }} onClick={() => deletarProduto(p.id)}>

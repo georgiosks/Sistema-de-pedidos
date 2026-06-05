@@ -136,7 +136,7 @@ export default function CustomerView() {
               <div style={{ flex: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-main)', margin: 0 }}>{produto.nome}</h3>
-                  <span className="price-tag" style={{ color: 'var(--primary)', fontSize: '1.1rem', whiteSpace: 'nowrap', marginLeft: '1rem' }}>R$ {produto.preco.toFixed(2)}</span>
+                  <span className="price-tag" style={{ color: '#ffffff', fontSize: '1.1rem', whiteSpace: 'nowrap', marginLeft: '1rem' }}>R$ {produto.preco.toFixed(2)}</span>
                 </div>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '0.5rem', lineHeight: '1.4' }}>
                   {produto.descricao}
@@ -171,7 +171,7 @@ export default function CustomerView() {
                       <div key={item.produto.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface-hover)', padding: '1rem', borderRadius: '12px' }}>
                         <div style={{ flexGrow: 1 }}>
                           <h4 style={{ margin: 0 }}>{item.produto.nome}</h4>
-                          <span style={{ color: 'var(--primary)', fontWeight: 600 }}>R$ {item.produto.preco.toFixed(2)}</span>
+                          <span style={{ color: '#ffffff', fontWeight: 600 }}>R$ {item.produto.preco.toFixed(2)}</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                           <button className="btn-icon" onClick={() => alterarQuantidade(item.produto.id, -1)}><Minus size={16}/></button>
@@ -191,7 +191,7 @@ export default function CustomerView() {
                     <strong>Taxa de Entrega</strong>
                     <strong>R$ 8.00</strong>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', fontSize: '1.25rem', color: 'var(--primary)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', fontSize: '1.25rem', color: '#ffffff' }}>
                     <strong>Total Final</strong>
                     <strong>R$ {(totalCarrinho + 8).toFixed(2)}</strong>
                   </div>
